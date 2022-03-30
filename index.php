@@ -1,4 +1,6 @@
-<?php include ('./dados.php'); ?>
+<?php 
+include_once ('./Site.crud.php');
+ ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -73,9 +75,9 @@
                         <div class="col-lg-8">
                             <div class="row gx-5 row-cols-1 row-cols-md-2">
                                 
-                                <?php foreach ($servicos as $servico) : ?>  
+                                <?php foreach (listaServicos() as $servico) : ?>  
                                     <div class="col mb-5 h-100">
-                                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi <?= $servico-> classe ?>"></i></div>
+                                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi <?= $servico->classe ?>"></i></div>
                                         <h2 class="h5">><?= $servico-> titulo ?></h2>
                                         <p class="mb-0"><?= $servico-> descricao ?></p>
                                     </div>                                
@@ -117,7 +119,7 @@
                         </div>
                     </div>
                     <div class="row gx-5">
-                        <?php foreach ($blogs as $blog) : ?>  
+                        <?php foreach (listaBlogs() as $blog) : ?>  
                             <div class="col-lg-4 mb-5">
                                 <div class="card h-100 shadow border-0">
                                     <img class="card-img-top" src="https://dummyimage.com/600x350/ced4da/6c757d" alt="..." />
