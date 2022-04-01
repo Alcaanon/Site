@@ -1,5 +1,5 @@
 <?php 
-include_once ('./Site.crud.php');
+include_once ('Site.crud.php');
  ?>
 
 <!DOCTYPE html>
@@ -15,19 +15,19 @@ include_once ('./Site.crud.php');
         <!-- Bootstrap icons-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css/styles.css" rel="stylesheet" />
+        <link href="../css/styles.css" rel="stylesheet" />
     </head>
     <body class="d-flex flex-column h-100">
         <main class="flex-shrink-0">
            <!-- Navigation-->
         <?php 
-            require("./header.php");
+            require("../headernav.php");
         ?>
         <!-- Cadastro-->
-        <section class="page-section" id="servicos">
+        <section class="page-section" id="blogs">
             <div class="container">
                 <div class="text-center">
-                    <h2 class="section-heading text-uppercase">Sistema de Gerenciamento de Serviços</h2>
+                    <h2 class="section-heading text-uppercase">Sistema de Gerenciamento de Blogs</h2>
                     <h3 class="section-subheading text-muted">Utilize a tabela abaixo para editar ou excluir as informações sobre os serviços prestados.</h3>
                     <?php if($_GET) : ?>
                     <h3 class="section-subheading text-danger"><strong>Ocoreu um erro ao tentar alterar o banco de dados.</strong></h3>
@@ -39,18 +39,22 @@ include_once ('./Site.crud.php');
                         <th>Classe</th>
                         <th>Titulo</th>
                         <th>Descrição</th>
+                        <th>Nome</th>
+                        <th>Data</th>
                         <th>Gerir</th>
                     </thead>
                     <tbody>
-                        <?php foreach (listaServicos() as $servico) : ?>
+                        <?php foreach (listaBlogs() as $blog) : ?>
                         <tr>
-                            <td><?= $servico->id ?></td>
-                            <td><?= $servico->classe ?></td>
-                            <td><?= $servico->titulo ?></td>
-                            <td><?= $servico->descricao ?></td>
+                            <td><?= $blog->id ?></td>
+                            <td><?= $blog->classe ?></td>
+                            <td><?= $blog->titulo ?></td>
+                            <td><?= $blog->descricao ?></td>
+                            <td><?= $blog->nome ?></td>
+                            <td><?= $blog->data ?></td>
                             <td>
-                                <a href="servicos.form.editar.php?id=<?= $servico->id ?>"><i class="bi bi-pencil-square"></i></a>&nbsp;
-                                <a onclick="return confirm('Deseja realmente remover este item?')" href="servicos.deletar.php?id=<?= $servico->id ?>"><i class="bi bi-trash"></i></a>
+                                <a href="blogs.form.editar.php?id=<?= $blog->id ?>"><i class="bi bi-pencil-square"></i></a>&nbsp;
+                                <a onclick="return confirm('Deseja realmente remover este item?')" href="blogs.deletar.php?id=<?= $blog->id ?>"><i class="bi bi-trash"></i></a>
                             </td>
                         </tr>
                         <?php endforeach; ?>

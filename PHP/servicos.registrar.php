@@ -5,9 +5,9 @@
     $titulo = $_POST['inputTitulo'];
     $descricao = $_POST['inputDescricao'];
 
-    if(cadastrarServico($classe, $titulo, $descricao))
+    if(cadastrarServicos($classe, $titulo, $descricao))
     {
-        header('Location: index.php');
+        header('Location: ../index.php');
         exit;
     }
 

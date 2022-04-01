@@ -15,7 +15,7 @@ include_once ('Site.crud.php');
         <!-- Bootstrap icons-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css/styles.css" rel="stylesheet" />
+        <link href="../css/styles.css" rel="stylesheet" />
     </head>
     <body class="d-flex flex-column h-100">
         <main class="flex-shrink-0">
@@ -23,19 +23,19 @@ include_once ('Site.crud.php');
             
             
         <?php 
-            require("./header.php");
+            require("../headernav.php");
         ?>
         <!-- Cadastro-->
-        <section class="page-section" id="servicos">
+        <section class="page-section" id="blogs">
             <div class="container">
                 <div class="text-center">
-                    <h2 class="section-heading text-uppercase">Sistema de Cadastro de Serviços</h2>
-                    <h3 class="section-subheading text-muted">Utilize a tabela abaixo para incluir as informações sobre os serviços prestados.</h3>
+                    <h2 class="section-heading text-uppercase">Sistema de Cadastro de Blogs</h2>
+                    <h3 class="section-subheading text-muted">Utilize a tabela abaixo para incluir as informações sobre os blogs.</h3>
                     <?php if($_GET) : ?>
-                    <h3 class="section-subheading text-danger"><strong>Ocoreu um erro ao tentar atualizar o banco de dados.</strong></h3>
+                    <h3 class="section-subheading text-danger"><strong>Ocoreu um erro ao tentar cadastrar no banco de dados.</strong></h3>
                     <?php endif; ?>
                 </div>
-                <form id="servicosForm" data-sb-form-api-token="API_TOKEN" method="POST" action="servicos.editar.php">
+                <form id="blogsForm" data-sb-form-api-token="API_TOKEN" method="POST" action="blogs.registrar.php">
                     <div class="row align-items-center mb-5 offset-4">
                         <div class="col-md-6">
                             <div class="form-group">
@@ -53,15 +53,25 @@ include_once ('Site.crud.php');
                                 <input class="form-control" id="description" name="inputDescricao" type="text" placeholder="Informe a descrição *" data-sb-validations="required" />
                                 <div class="invalid-feedback" data-sb-feedback="description:required">A descrição é necessária.</div>
                             </div>
+                            <div class="form-group mb-md-0">
+                                <!-- Nome input-->
+                                <input class="form-control" id="description" name="inputNome" type="text" placeholder="Informe o nome *" data-sb-validations="required" />
+                                <div class="invalid-feedback" data-sb-feedback="description:required">O nome é necessário.</div>
+                            </div>
+                            <div class="form-group mb-md-0">
+                                <!-- Data input-->
+                                <input class="form-control" id="description" name="inputData" type="text" placeholder="Informe a data *" data-sb-validations="required" />
+                                <div class="invalid-feedback" data-sb-feedback="description:required">A data é necessária.</div>
+                            </div>
                         </div>
                     </div>
                     <div class="d-none" id="submitSuccessMessage">
                         <div class="text-center text-white mb-3">
-                            <div class="fw-bolder">Alteração de dados feita com sucesso!</div>
+                            <div class="fw-bolder">Inclusão de dados feita com sucesso!</div>
                         </div>
                     </div>
                     <!-- Submit Button-->
-                    <div class="text-center"><button class="btn btn-primary btn-xl text-uppercase" id="submitButton" type="submit">Atualizar</button></div>
+                    <div class="text-center"><button class="btn btn-primary btn-xl text-uppercase" id="submitButton" type="submit">Registrar</button></div>
                 </form>
             </div>
         </section>
