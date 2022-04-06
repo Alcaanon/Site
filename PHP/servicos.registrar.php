@@ -1,9 +1,9 @@
 <?php
     require_once("Site.crud.php");
 
-    $classe = $_POST['inputClasse'];
-    $titulo = $_POST['inputTitulo'];
-    $descricao = $_POST['inputDescricao'];
+    $classe = filter_input(INPUT_POST, 'inputClasse', FILTER_SANITIZE_SPECIAL_CHARS);
+    $titulo = filter_input(INPUT_POST, 'inputTitulo', FILTER_SANITIZE_SPECIAL_CHARS);
+    $descricao = filter_input(INPUT_POST, 'inputDescricao', FILTER_SANITIZE_SPECIAL_CHARS);
 
     if(cadastrarServicos($classe, $titulo, $descricao))
     {
