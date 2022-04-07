@@ -4,8 +4,10 @@
     if(isset($_SESSION['servicos_dados'])) 
     {
         $servico = $_SESSION['servicos_dados'];
-    } else {
-        header('location: servicos.list.php');
+    } 
+    else 
+    {
+        header('Location: servicos.list.page.php?error=true');
         exit;
     }
 ?>

@@ -3,7 +3,7 @@
 
     if(isset($_SESSION['blogs_dados'])) 
     {
-        $servico = $_SESSION['blogs_dados'];
+        $blog = $_SESSION['blogs_dados'];
     } else {
         header('location: blogs.list.php');
         exit;

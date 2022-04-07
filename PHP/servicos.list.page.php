@@ -29,9 +29,6 @@
                 <div class="text-center">
                     <h2 class="section-heading text-uppercase">Sistema de Gerenciamento de Serviços</h2>
                     <h3 class="section-subheading text-muted">Utilize a tabela abaixo para editar ou excluir as informações sobre os serviços prestados.</h3>
-                    <?php if($_GET) : ?>
-                    <h3 class="section-subheading text-danger"><strong>Ocoreu um erro ao tentar alterar o banco de dados.</strong></h3>
-                    <?php endif; ?>
                 </div>
                 <table class="table table-stripped" style="color: black;">
                     <thead>
@@ -42,7 +39,7 @@
                         <th>Gerir</th>
                     </thead>
                     <tbody>
-                        <?php foreach($_SESSION['servicos_dados'] as $servico) : ?>
+                        <?php foreach($_SESSION['servicos_lista'] as $servico) : ?>
                         <tr>
                             <td><?= $servico->id ?></td>
                             <td><?= $servico->classe ?></td>
@@ -59,9 +56,9 @@
                         <tfoot>
                             <tr>
                                 <?php if(isset($_GET['error'])): ?>
-                                    <td colspan="6"><h3 style="font-size: small;" class="text-danger"><strong>Ocoreu um erro ao tentar cadastrar/apagar no banco.</strong></h3></td>
+                                    <td colspan="6"><h3 style="font-size: small;" class="text-danger"><strong>Ocoreu um erro ao tentar editar/apagar no banco.</strong></h3></td>
                                 <?php elseif(isset($_GET['success'])): ?>
-                                    <td colspan="6"><h3 style="font-size: small;" class="text-success"><strong>Gravado/Apagado com sucesso do banco.</strong></h3></td>
+                                    <td colspan="6"><h3 style="font-size: small;" class="text-success"><strong>Editado/Apagado com sucesso do banco.</strong></h3></td>
                                 <?php endif; ?>
                             </tr>
                         </tfoot>

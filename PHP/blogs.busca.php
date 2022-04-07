@@ -11,6 +11,6 @@
     }
     else
     {
-        $_SESSION['blogs_dados'] = listaBlogs();
+        $_SESSION['blogs_lista'] = listaBlogs();
     }
 

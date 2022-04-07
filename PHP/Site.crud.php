@@ -4,21 +4,33 @@ require_once("conexao.php");
 // Funções de Criar
 function cadastrarServicos($classe, $titulo, $descricao) 
 {
-    $link = getConnection();
-    $sql = "insert into servicos (classe, titulo, descricao) values ('{$classe}', '{$titulo}', '{$descricao}')";
-    $result = mysqli_query($link, $sql);
-    mysqli_close($link);
-    if($result)
+    $con = getConnection();
+    $sql = "INSERT INTO servicos (classe, titulo, descricao) VALUES (:classe, :titulo, :descricao)";
+    $result = $con->prepare($sql);
+    $result->bindParam(":classe", $classe);
+    $result->bindParam(":titulo", $titulo);
+    $result->bindParam(":descricao", $descricao);
+    $execute = $result->execute();
+    unset($con);
+    unset($result);
+    if($execute)
         return true;
     return false;
 }
 function cadastrarBlogs($classe, $titulo, $descricao, $nome, $data) 
 {
-    $link = getConnection();
-    $sql = "insert into blogs (classe, titulo, descricao, nome, data) values ('{$classe}', '{$titulo}', '{$descricao}', '{$nome}', '{$data}')";
-    $result = mysqli_query($link, $sql);
-    mysqli_close($link);
-    if($result)
+    $con = getConnection();
+    $sql = "INSERT INTO blogs (classe, titulo, descricao, nome, data) VALUES (:classe, :titulo, :descricao, :nome, :data)";
+    $result = $con->prepare($sql);
+    $result->bindParam(":classe", $classe);
+    $result->bindParam(":titulo", $titulo);
+    $result->bindParam(":descricao", $descricao);
+    $result->bindParam(":nome", $nome);
+    $result->bindParam(":data", $data);
+    $execute = $result->execute();
+    unset($con);
+    unset($result);
+    if($execute)
         return true;
     return false;
 }
@@ -26,49 +38,65 @@ function cadastrarBlogs($classe, $titulo, $descricao, $nome, $data)
 // Funções de Listar
 function listaServicos()
 {
-    $link = getConnection();
-    $sql = "select * from servicos";
-    $result = mysqli_query($link, $sql);
+    $con = getConnection();
+    $sql = "SELECT * FROM servicos";
+    $result = $con->query($sql);
     $listaServico = array();
-    while($servicos = mysqli_fetch_object($result))
+    while($servicos = $result->fetch(PDO::FETCH_OBJ))
     {
         array_push($listaServico, $servicos);
     }
-    mysqli_close($link);
+    unset($con);
+    unset($result);
     return $listaServico;
 }
 function listaBlogs()
 {
-    $link = getConnection();
-    $sql = "select * from blogs";
-    $result = mysqli_query($link, $sql);
+    $con = getConnection();
+    $sql = "SELECT * FROM blogs";
+    $result = $con->query($sql);
     $listaBlogs = array();
-    while($blogs = mysqli_fetch_object($result))
+    while($blogs = $result -> fetch(PDO::FETCH_OBJ))
     {
         array_push($listaBlogs, $blogs);
     }
-    mysqli_close($link);
+    unset($con);
+    unset($result);
     return $listaBlogs;
 }
 
 // Funções de Atualizar
 function atualizarServicos($id, $classe, $titulo, $descricao) 
 {
-    $link = getConnection();
-    $sql = "UPDATE servicos SET classe ='{$classe}', titulo ='{$titulo}', descricao ='{$descricao}' WHERE id={$id}";
-    $result = mysqli_query($link, $sql);
-    mysqli_close($link);
-    if($result)
+    $con = getConnection();
+    $sql = "UPDATE servicos SET classe = :classe, titulo =:titulo, descricao =:descricao WHERE id=:id";
+    $result = $con->prepare($sql);
+    $result->bindParam(":id", $id);
+    $result->bindParam(":classe", $classe);
+    $result->bindParam(":titulo", $titulo);
+    $result->bindParam(":descricao", $descricao);
+    $execute = $result->execute();
+    unset($con);
+    unset($result);
+    if($execute)
         return true;
     return false;
 }
 function atualizarBlogs($id, $classe, $titulo, $descricao, $nome, $data) 
 {
-    $link = getConnection();
-    $sql = "UPDATE blogs SET classe ='{$classe}', titulo ='{$titulo}', descricao ='{$descricao}', nome = '{$nome}', data = '{$data}' WHERE id={$id}";
-    $result = mysqli_query($link, $sql);
-    mysqli_close($link);
-    if($result)
+    $con = getConnection();
+    $sql = "UPDATE blogs SET classe =:classe, titulo =:titulo, descricao =:descricao, nome =:nome, data =:data WHERE id=:id";
+    $result = $con->prepare($sql);
+    $result->bindParam(":id", $id);
+    $result->bindParam(":classe", $classe);
+    $result->bindParam(":titulo", $titulo);
+    $result->bindParam(":descricao", $descricao);
+    $result->bindParam(":nome", $nome);
+    $result->bindParam(":data", $data);
+    $execute = $result->execute();
+    unset($con);
+    unset($result);
+    if($execute)
         return true;
     return false;
 }
@@ -76,21 +104,27 @@ function atualizarBlogs($id, $classe, $titulo, $descricao, $nome, $data)
 // Funções de Deletar
 function apagarServicos($id) 
 {
-    $link = getConnection();
-    $sql = "delete from servicos where id = {$id}";
-    $result = mysqli_query($link, $sql);
-    mysqli_close($link);
-    if($result)
+    $con = getConnection();
+    $sql = "DELETE FROM servicos WHERE id = :id";
+    $result = $con->prepare($sql);
+    $result->bindParam(":id", $id);
+    $execute = $result->execute();
+    unset($con);
+    unset($result);
+    if($execute)
         return true;
     return false;
 }
 function apagarBlogs($id) 
 {
-    $link = getConnection();
-    $sql = "delete from blogs where id = {$id}";
-    $result = mysqli_query($link, $sql);
-    mysqli_close($link);
-    if($result)
+    $con = getConnection();
+    $sql = "DELETE FROM blogs WHERE id = :id";
+    $result = $con->prepare($sql);
+    $result->bindParam(":id", $id);
+    $execute = $result->execute();
+    unset($con);
+    unset($result);
+    if($execute)
         return true;
     return false;
 }
@@ -98,17 +132,23 @@ function apagarBlogs($id)
 // Funções de Localizar
 function localizaServicosPeloID($id)
 {
-    $link = getConnection();
-    $sql = "select * from servicos where id = {$id}";
-    $servico = mysqli_fetch_object(mysqli_query($link, $sql));
-    mysqli_close($link);
+    $con = getConnection();
+
+    $sql = "SELECT * FROM servicos WHERE id= :id";
+    
+    $result = $con->query($sql);
+    $servico = $result->fetch(PDO::FETCH_OBJ);
+
+    unset($con);
+    unset($result);
     return $servico;
 }
 function localizaBlogsPeloID($id)
 {
-    $link = getConnection();
-    $sql = "select * from blogs where id = {$id}";
-    $servico = mysqli_fetch_object(mysqli_query($link, $sql));
-    mysqli_close($link);
-    return $servico;
+    $con = getConnection();
+    $sql = "SELECT * FROM blogs WHERE id= :id";
+    $result = $con->query($sql)->fetch(PDO::FETCH_OBJ);
+    unset($con);
+    unset($result);
+    return $result;
 }

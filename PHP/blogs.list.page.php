@@ -44,7 +44,7 @@
                         <th>Gerir</th>
                     </thead>
                     <tbody>
-                        <?php foreach ($_SESSION['blogs_dados'] as $blog) : ?>
+                        <?php foreach ($_SESSION['blogs_lista'] as $blog) : ?>
                         <tr>
                             <td><?= $blog->id ?></td>
                             <td><?= $blog->classe ?></td>
