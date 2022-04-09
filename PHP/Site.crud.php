@@ -133,12 +133,11 @@ function apagarBlogs($id)
 function localizaServicosPeloID($id)
 {
     $con = getConnection();
-
-    $sql = "SELECT * FROM servicos WHERE id= :id";
-    
-    $result = $con->query($sql);
+    $sql = "SELECT * FROM servicos WHERE id = :id";
+    $result = $con->prepare($sql);
+    $result->bindParam(":id", $id);
+    $execute = $result->execute();
     $servico = $result->fetch(PDO::FETCH_OBJ);
-
     unset($con);
     unset($result);
     return $servico;
@@ -146,9 +145,12 @@ function localizaServicosPeloID($id)
 function localizaBlogsPeloID($id)
 {
     $con = getConnection();
-    $sql = "SELECT * FROM blogs WHERE id= :id";
-    $result = $con->query($sql)->fetch(PDO::FETCH_OBJ);
+    $sql = "SELECT * FROM blogs WHERE id = :id";
+    $result = $con->prepare($sql);
+    $result->bindParam(":id", $id);
+    $execute = $result->execute();
+    $servico = $result->fetch(PDO::FETCH_OBJ);
     unset($con);
     unset($result);
-    return $result;
+    return $servico;
 }
